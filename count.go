@@ -30,11 +30,20 @@ func WithInputArgs(s []string) option {
 		if len(s) < 1 {
 			return nil
 		}
-		file, err := os.Open(s[0])
-		if err != nil {
-			return err
+		var openFiles []io.Reader
+
+		for _, filename := range s {
+			f, err := os.Open(filename)
+			if err != nil {
+				continue
+			}
+			openFiles = append(openFiles, f)
 		}
-		c.input = file
+		//file, err := os.Open(s)
+		//if err != nil {
+		//	return err
+		//}
+		c.input = io.MultiReader(openFiles...)
 		return nil
 	}
 }

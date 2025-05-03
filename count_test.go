@@ -69,3 +69,17 @@ func TestWithInputFromArgs_IgnoresEmptyArgs(t *testing.T) {
 		t.Fatalf("want %d, got %d", want, got)
 	}
 }
+
+func TestWithInputFromArgs_SetsInputToMultipleGivenPaths(t *testing.T) {
+	t.Parallel()
+	s := []string{"testdata/three_lines.txt", "testdata/three_lines.txt"}
+	counter, err := count.NewCounter(count.WithInputArgs(s))
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := 6
+	got := counter.Lines()
+	if want != got {
+		t.Errorf("want %d, got %d", want, got)
+	}
+}

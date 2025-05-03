@@ -1,0 +1,12 @@
+exec count three_lines.txt four_lines.txt
+stdout 7
+
+-- three_lines.txt --
+This is
+the
+file one.
+-- four_lines.txt --
+This is
+one
+more
+file.
