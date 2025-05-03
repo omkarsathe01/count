@@ -1,0 +1,8 @@
+exec count three_lines.txt
+
+stdout '^3\n$'
+
+-- three_lines.txt --
+Line 1
+Line 2
+Line 3
